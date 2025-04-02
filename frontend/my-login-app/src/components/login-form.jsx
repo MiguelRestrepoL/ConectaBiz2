@@ -18,9 +18,9 @@ export function LoginForm({
     (<div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Camilo</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Somos super amiguitos, mucho mas que amiguitos, superamiguitos
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -51,9 +51,9 @@ export function LoginForm({
               </div>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+              No estas disfrutando el proceso?{" "}
               <a href="#" className="underline underline-offset-4">
-                Sign up
+                Por ahi a las 9 es que tengo que pasar donde un cliente que no me demora nada
               </a>
             </div>
           </form>
