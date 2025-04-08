@@ -36,7 +36,7 @@ export function LoginForm({ className, ...props }) {
   return (
     <div className={cn("flex flex-col items-center w-full", className)} {...props}>
       {/* Contenedor interno del formulario */}
-      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl shadow-lg ring-2 ring-black">
+      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl ring-2 shadow-[0_0_12px_rgba(0,0,0,0.3)]">
         {/* Encabezado y bienvenida */}
         <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full"></div>
