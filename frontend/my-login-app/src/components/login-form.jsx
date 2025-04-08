@@ -46,7 +46,7 @@ export function LoginForm({ className, ...props }) {
         </p>
 
         {/* Tarjeta con formulario; se agrega ring para un borde sutil */}
-        <Card className="bg-white text-black shadow-lg ring-1 ring-gray-600">
+        <Card className="bg-white text-black shadow-lg ring-2 ring-black">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
           </CardHeader>
