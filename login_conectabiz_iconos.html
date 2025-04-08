@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Conectabiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #1f3b5b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #1f3b5b;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .circle-logo {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 1rem;
+      border: 3px solid #f289c6;
+      border-radius: 50%;
+    }
+
+    h2 {
+      margin: 0.5rem 0;
+      font-size: 20px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 10px;
+      padding: 0.5rem;
+    }
+
+    .input-group img {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+
+    .input-group input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    .signin-button {
+      background-color: #222;
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .signin-button:hover {
+      background-color: #444;
+    }
+
+    .forgot-password {
+      display: block;
+      margin-top: 1rem;
+      color: #ccc;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .register {
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social {
+      background: white;
+      color: black;
+      padding: 0.7rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .social img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .social:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .social {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">CONECTABIZ</h1>
+    <div class="circle-logo"></div>
+    <h2>¡Bienvenido nuevamente!</h2>
+    <p>Ingrese su correo y contraseña para acceder</p>
+    
+    <form class="login-form">
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/000000/new-post.png" alt="email icon"/>
+        <input type="email" placeholder="Email" required>
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-filled/50/000000/key.png" alt="key icon"/>
+        <input type="password" placeholder="Contraseña" required>
+      </div>
+      <button type="submit" class="signin-button">Sign In</button>
+    </form>
+
+    <a href="#" class="forgot-password">¿Olvido su contraseña?</a>
+    <p>¿No tienes cuenta? <a href="#" class="register">¡Regístrese!</a></p>
+
+    <div class="social-buttons">
+      <button class="social google">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google icon" />
+        Continuar con Google
+      </button>
+      <button class="social phone">
+        <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Phone icon" />
+        Continuar con el teléfono
+      </button>
+      <button class="social microsoft">
+        <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft icon" />
+        Continuar con Microsoft
+      </button>
+    </div>
+  </div>
+</body>
+</html>
