@@ -36,7 +36,7 @@ export function LoginForm({ className, ...props }) {
   return (
     <div className={cn("flex flex-col items-center w-full", className)} {...props}>
       {/* Contenedor interno del formulario */}
-      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl shadow-lg">
+      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl shadow-lg ring-2 ring-black">
         {/* Encabezado y bienvenida */}
         <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full"></div>
@@ -46,7 +46,7 @@ export function LoginForm({ className, ...props }) {
         </p>
 
         {/* Tarjeta con formulario; se agrega ring para un borde sutil */}
-        <Card className="bg-white text-black shadow-lg ring-2 ring-black">
+        <Card className="bg-white text-black shadow-lg ring-1 ring-gray-300">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
           </CardHeader>
