@@ -34,16 +34,10 @@ export function LoginForm({ className, ...props }) {
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center min-h-screen bg-[#1f3b5b] p-8",
-        className
-      )}
-      {...props}
-    >
-      {/* Contenedor principal con estilos de fondo, redondeado, etc. */}
-      <div className="max-w-md w-full bg-[#1f3b5b] text-white p-8 rounded-xl shadow-lg">
-        {/* Logo y bienvenida */}
+    <div className={cn("flex flex-col items-center w-full", className)} {...props}>
+      {/* Contenedor interno del formulario */}
+      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl shadow-lg">
+        {/* Encabezado y bienvenida */}
         <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full"></div>
         <h2 className="text-xl text-center mb-1">¡Bienvenido nuevamente!</h2>
@@ -51,14 +45,14 @@ export function LoginForm({ className, ...props }) {
           Ingrese su correo y contraseña para acceder
         </p>
 
-        {/* Tarjeta que contiene el formulario de login */}
-        <Card className="bg-white text-black">
+        {/* Tarjeta con formulario; se agrega ring para un borde sutil */}
+        <Card className="bg-white text-black shadow-lg ring-1 ring-gray-300">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              {/* Grupo de Input para Email */}
+              {/* Input Email */}
               <div>
                 <Label htmlFor="email" className="block mb-1">
                   Correo electrónico
@@ -81,7 +75,7 @@ export function LoginForm({ className, ...props }) {
                 </div>
               </div>
 
-              {/* Grupo de Input para Contraseña */}
+              {/* Input Contraseña */}
               <div>
                 <Label htmlFor="password" className="block mb-1">
                   Contraseña
@@ -104,7 +98,6 @@ export function LoginForm({ className, ...props }) {
                 </div>
               </div>
 
-              {/* Botón de envío */}
               <Button
                 type="submit"
                 className="w-full bg-black text-white font-bold py-2 rounded-md hover:bg-gray-700 transition"
@@ -118,7 +111,7 @@ export function LoginForm({ className, ...props }) {
           </CardContent>
         </Card>
 
-        {/* Enlace para recuperar contraseña y registrarse */}
+        {/* Enlaces adicionales */}
         <a
           href="#"
           className="block text-center text-gray-300 mt-4 text-sm underline"
@@ -132,7 +125,7 @@ export function LoginForm({ className, ...props }) {
           </a>
         </p>
 
-        {/* Botones de inicio de sesión social */}
+        {/* Botones de autenticación social */}
         <div className="flex flex-col gap-2 mt-6">
           <Button
             type="button"
