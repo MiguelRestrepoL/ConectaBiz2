@@ -4,7 +4,8 @@ export function PlanSelector() {
   return (
     <div className="bg-[#0f172a] text-[#e2e8f0] min-h-screen">
       {/* TOPBAR */}
-      <header className="bg-[#14213d] text-white py-5 px-7 flex items-center justify-between gap-5 flex-wrap">
+      {/* Ajuste principal: usar flex-col md:flex-row en lugar de flex-wrap */}
+      <header className="bg-[#14213d] text-white py-5 px-7 flex flex-col md:flex-row items-center justify-between gap-5">
         <div className="flex items-center gap-5">
           <div className="flex flex-col items-center">
             <div className="font-bold text-base mb-1">CONECTABIZ</div>
@@ -14,8 +15,11 @@ export function PlanSelector() {
             <h3>¡Bienvenido nuevamente, Usuario!</h3>
           </div>
         </div>
-        <div className="flex-1 flex justify-center">
-          <div className="flex items-center bg-[#334155] rounded-lg py-2 px-4 w-[300px]">
+
+        {/* Ajuste principal: En pantallas pequeñas, el contenedor ocupa todo el ancho;
+            en md o mayor, se restringe a un ancho fijo */}
+        <div className="w-full md:w-auto md:flex-1 flex justify-center">
+          <div className="flex items-center bg-[#334155] rounded-lg py-2 px-4 w-full md:w-[300px]">
             <span className="mr-3 text-gray-400">🔍</span>
             <input
               type="text"
@@ -24,6 +28,7 @@ export function PlanSelector() {
             />
           </div>
         </div>
+
         <button className="bg-[#3b82f6] py-2 px-4 rounded-lg text-white flex items-center gap-2">
           <img
             src="https://cdn-icons-png.flaticon.com/512/107/107831.png"
@@ -35,9 +40,11 @@ export function PlanSelector() {
       </header>
 
       {/* LAYOUT GENERAL */}
-      <div className="flex">
+      {/* Ajuste principal: flex-col md:flex-row para que el sidebar se muestre debajo
+          en pantallas pequeñas y a la izquierda en pantallas md+ */}
+      <div className="flex flex-col md:flex-row">
         {/* SIDEBAR */}
-        <aside className="w-[220px] bg-[#1e293b] p-5 min-h-[calc(100vh-60px)]">
+        <aside className="w-full md:w-[220px] bg-[#1e293b] p-5 md:min-h-[calc(100vh-60px)]">
           <ul className="list-none">
             <li className="mb-3 p-2 border border-[#334155] rounded-lg bg-[#334155] flex items-center gap-2 text-sm">
               🏠 Inicio
@@ -89,7 +96,8 @@ export function PlanSelector() {
             cobro. Puedes cambiar el plan cuando desees.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-5 mt-5">
+          {/* Ajuste principal: flex-col en pantallas pequeñas; en md o mayores se organiza en fila */}
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-5 mt-5">
             {/* PLAN - Free */}
             <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-[280px]">
               <span className="bg-[#3b82f6] text-white px-2 py-1 text-xs rounded-full mb-2 inline-block">
@@ -205,8 +213,7 @@ export function PlanSelector() {
 
       {/* FOOTER */}
       <footer className="text-center p-5 text-xs text-[#94a3b8]">
-        Al seleccionar el paquete se mostrarán todos los detalles del paquete
-        deseado.
+        Al seleccionar el paquete se mostrarán todos los detalles del paquete deseado.
       </footer>
     </div>
   );
