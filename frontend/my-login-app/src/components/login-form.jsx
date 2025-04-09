@@ -15,9 +15,12 @@ import { Label } from "@/components/ui/label";
 export function LoginForm({ className, onSuccess, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // Estados para avisos de error separados
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Credenciales locales definidas para prueba
+  // Credenciales de prueba
   const usuarioValido = {
     email: "andres@gmail.com",
     password: "123456",
@@ -25,13 +28,24 @@ export function LoginForm({ className, onSuccess, ...props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === usuarioValido.email && password === usuarioValido.password) {
-      setMessage("¡Inicio de sesión exitoso!");
-      // Llamamos al callback para notificar el login exitoso
-      if (onSuccess) onSuccess();
-    } else {
-      setMessage("Credenciales incorrectas. Inténtalo de nuevo.");
+    // Limpiamos los errores anteriores
+    setEmailError("");
+    setPasswordError("");
+    setMessage("");
+
+    // Verificamos el email
+    if (email !== usuarioValido.email) {
+      setEmailError("Correo incorrecto. Inténtalo de nuevo.");
+      return;
     }
+    // Verificamos la contraseña (solo si el email es correcto)
+    if (password !== usuarioValido.password) {
+      setPasswordError("Contraseña incorrecta. Inténtalo de nuevo.");
+      return;
+    }
+    // Si ambos son correctos, se notifica el éxito
+    setMessage("¡Inicio de sesión exitoso!");
+    if (onSuccess) onSuccess();
   };
 
   return (
@@ -49,6 +63,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              {/* Email */}
               <div>
                 <Label htmlFor="email" className="block mb-1">
                   Correo electrónico
@@ -69,8 +84,14 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     className="bg-transparent outline-none"
                   />
                 </div>
+                {emailError && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-2 text-sm">
+                    {emailError}
+                  </div>
+                )}
               </div>
 
+              {/* Contraseña */}
               <div>
                 <Label htmlFor="password" className="block mb-1">
                   Contraseña
@@ -91,6 +112,11 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     className="bg-transparent outline-none"
                   />
                 </div>
+                {passwordError && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-2 text-sm">
+                    {passwordError}
+                  </div>
+                )}
               </div>
 
               <Button
