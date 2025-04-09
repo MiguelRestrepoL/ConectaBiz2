@@ -12,12 +12,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export function LoginForm({ className, ...props }) {
+export function LoginForm({ className, onSuccess, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  // Credenciales locales definidas
+  // Credenciales locales definidas para prueba
   const usuarioValido = {
     email: "andres@gmail.com",
     password: "123456",
@@ -27,7 +27,8 @@ export function LoginForm({ className, ...props }) {
     e.preventDefault();
     if (email === usuarioValido.email && password === usuarioValido.password) {
       setMessage("¡Inicio de sesión exitoso!");
-      // Aquí podrías redirigir al usuario o actualizar el estado de autenticación
+      // Llamamos al callback para notificar el login exitoso
+      if (onSuccess) onSuccess();
     } else {
       setMessage("Credenciales incorrectas. Inténtalo de nuevo.");
     }
@@ -35,24 +36,19 @@ export function LoginForm({ className, ...props }) {
 
   return (
     <div className={cn("flex flex-col items-center w-full", className)} {...props}>
-      {/* Contenedor interno del formulario */}
       <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl ring-2 shadow-[0_0_12px_rgba(0,0,0,0.3)]">
-        {/* Encabezado y bienvenida */}
         <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full"></div>
         <h2 className="text-xl text-center mb-1">¡Bienvenido nuevamente!</h2>
         <p className="text-center mb-6">
           Ingrese su correo y contraseña para acceder
         </p>
-
-        {/* Tarjeta con formulario; se agrega ring para un borde sutil */}
         <Card className="bg-white text-black shadow-lg ring-1 ring-gray-300">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              {/* Input Email */}
               <div>
                 <Label htmlFor="email" className="block mb-1">
                   Correo electrónico
@@ -75,7 +71,6 @@ export function LoginForm({ className, ...props }) {
                 </div>
               </div>
 
-              {/* Input Contraseña */}
               <div>
                 <Label htmlFor="password" className="block mb-1">
                   Contraseña
@@ -111,7 +106,6 @@ export function LoginForm({ className, ...props }) {
           </CardContent>
         </Card>
 
-        {/* Enlaces adicionales */}
         <a
           href="#"
           className="block text-center text-gray-300 mt-4 text-sm underline"
@@ -125,7 +119,6 @@ export function LoginForm({ className, ...props }) {
           </a>
         </p>
 
-        {/* Botones de autenticación social */}
         <div className="flex flex-col gap-2 mt-6">
           <Button
             type="button"
