@@ -4,7 +4,8 @@ export function PlanSelector() {
   return (
     <div className="bg-[#0f172a] text-[#e2e8f0] min-h-screen">
       {/* TOPBAR */}
-      <header className="bg-[#14213d] text-white py-5 px-7 flex items-center justify-between gap-5 flex-wrap">
+      <header className="bg-[#14213d] text-white py-5 px-7 flex flex-col md:flex-row items-center justify-between gap-5">
+        {/* Logo y bienvenida */}
         <div className="flex items-center gap-5">
           <div className="flex flex-col items-center">
             <div className="font-bold text-base mb-1">CONECTABIZ</div>
@@ -14,8 +15,9 @@ export function PlanSelector() {
             <h3>¡Bienvenido nuevamente, Usuario!</h3>
           </div>
         </div>
-        <div className="flex-1 flex justify-center">
-          <div className="flex items-center bg-[#334155] rounded-lg py-2 px-4 w-[300px]">
+        {/* Barra de búsqueda */}
+        <div className="w-full md:w-[300px] flex justify-center md:justify-end">
+          <div className="flex items-center bg-[#334155] rounded-lg py-2 px-4 w-full">
             <span className="mr-3 text-gray-400">🔍</span>
             <input
               type="text"
@@ -24,6 +26,7 @@ export function PlanSelector() {
             />
           </div>
         </div>
+        {/* Botón Tienda */}
         <button className="bg-[#3b82f6] py-2 px-4 rounded-lg text-white flex items-center gap-2">
           <img
             src="https://cdn-icons-png.flaticon.com/512/107/107831.png"
@@ -34,10 +37,10 @@ export function PlanSelector() {
         </button>
       </header>
 
-      {/* LAYOUT GENERAL */}
-      <div className="flex">
+      {/* LAYOUT GENERAL: Sidebar + Contenido Principal */}
+      <div className="flex flex-col md:flex-row">
         {/* SIDEBAR */}
-        <aside className="w-[220px] bg-[#1e293b] p-5 min-h-[calc(100vh-60px)]">
+        <aside className="w-full md:w-[220px] bg-[#1e293b] p-5 md:min-h-[calc(100vh-60px)]">
           <ul className="list-none">
             <li className="mb-3 p-2 border border-[#334155] rounded-lg bg-[#334155] flex items-center gap-2 text-sm">
               🏠 Inicio
@@ -81,17 +84,17 @@ export function PlanSelector() {
           </ul>
         </aside>
 
-        {/* MAIN CONTENT */}
-        <main className="flex-1 p-8">
+        {/* CONTENIDO PRINCIPAL */}
+        <main className="flex-1 p-5 md:p-8">
           <h2 className="text-2xl font-bold">Selecciona un plan</h2>
           <p className="mt-2">
             Puedes cancelar el plan antes del <strong>30 de abril</strong> sin
             cobro. Puedes cambiar el plan cuando desees.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-5 mt-5">
+          {/* Contenedor de planes */}
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-5 mt-5">
             {/* PLAN - Free */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
               <span className="bg-[#3b82f6] text-white px-2 py-1 text-xs rounded-full mb-2 inline-block">
                 Más popular
               </span>
@@ -124,9 +127,8 @@ export function PlanSelector() {
                 Envíos: Tarifas de envio por servientrega de (money) COP$
               </p>
             </div>
-
             {/* PLAN - Premium */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
               <h3 className="mb-2 text-xl text-white">Premium</h3>
               <p className="mb-2">
                 <em>
@@ -160,15 +162,13 @@ export function PlanSelector() {
                 Envíos: Tarifas de envio por servientrega de (money) COP$
               </p>
             </div>
-
             {/* PLAN - Elite */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
               <h3 className="mb-2 text-xl text-white">Elite</h3>
               <p className="mb-2">
                 <em>
                   Todos los beneficios posibles, asistencia por canal privado,
-                  soporte 24/7, privilegios para la tienda y página
-                  personalizada
+                  soporte 24/7, privilegios para la tienda y página personalizada
                 </em>
               </p>
               <p className="text-2xl font-bold mb-2 text-white">15€ / mes</p>
@@ -202,11 +202,9 @@ export function PlanSelector() {
           </div>
         </main>
       </div>
-
       {/* FOOTER */}
       <footer className="text-center p-5 text-xs text-[#94a3b8]">
-        Al seleccionar el paquete se mostrarán todos los detalles del paquete
-        deseado.
+        Al seleccionar el paquete se mostrarán todos los detalles del paquete deseado.
       </footer>
     </div>
   );
