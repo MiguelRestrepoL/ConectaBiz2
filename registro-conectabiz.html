@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - Conectabiz</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #364f68 17%, #4e7aa5 61%, #659ed3 100%);
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      background-color: transparent;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      gap: 60px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .left h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .left img {
+      width: 120px;
+      margin: 20px 0;
+    }
+
+    .left p {
+      font-style: italic;
+      color: #e0e0e0;
+    }
+
+    .right {
+      flex: 1;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px 40px;
+      border-radius: 12px;
+    }
+
+    .right h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background-color: white;
+    }
+
+    .input-group img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .input-group input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+      background-color: transparent;
+      color: black;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .checkbox input {
+      margin-right: 10px;
+    }
+
+    .register-btn {
+      background-color: #262626;
+      color: white;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .social-button {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background-color: white;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .social-button img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      font-size: 13px;
+      gap: 20px;
+    }
+
+    .links a {
+      color: #90cdf4;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .left, .right {
+        width: 100%;
+        text-align: center;
+      }
+
+      .social-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .social-button {
+        margin: 0;
+      }
+    }
+
+    /* MODAL DE TÉRMINOS */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: white;
+      color: #000;
+      margin: 10% auto;
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      text-align: left;
+    }
+
+    .modal-content h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .modal-buttons button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .modal-buttons .cancel-btn {
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    .modal-buttons .proceed-btn {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .close-x {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 20px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    /* MENSAJE DE REGISTRO EXITOSO */
+    .success-popup {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #e6f4ea;
+      color: black;
+      border: 1px solid #b7e1cd;
+      border-radius: 10px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 2000;
+    }
+
+    .success-popup img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left">
+      <h1>CONECTABIZ</h1>
+      <img src="logo conectabiz bg.png" alt="Logo Conectabiz">
+      <p>Haz crecer tu negocio, conéctalo</p>
+    </div>
+
+    <div class="right">
+      <h2>Crear cuenta</h2>
+
+      <!-- Campos -->
+      <div class="input-group"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"><input type="text" placeholder="Nombre de usuario"></div>
+      <div class="input-group"><img src="https://cdn-icons-png.flaticon.com/512/561/561127.png"><input type="email" placeholder="Email"></div>
+      <div class="input-group"><img src="https://cdn-icons-png.flaticon.com/512/561/561127.png"><input type="email" placeholder="Confirme su e-mail"></div>
+      <div class="input-group"><img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png"><input type="password" placeholder="Contraseña"></div>
+      <div class="input-group"><img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png"><input type="password" placeholder="Confirme su contraseña"></div>
+
+      <!-- Términos -->
+      <div class="checkbox">
+        <input type="checkbox" id="terms" onclick="handleTermsClick(this)">
+        <label for="terms">Estoy de acuerdo con los términos y condiciones</label>
+      </div>
+
+      <button class="register-btn" onclick="handleRegister()">Registrarse</button>
+
+      <div class="social-buttons">
+        <button class="social-button"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">Google</button>
+        <button class="social-button"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png">Teléfono</button>
+        <button class="social-button"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png">Microsoft</button>
+      </div>
+
+      <div class="links">
+        <a href="#">Condiciones de uso</a>
+        <a href="#">Términos y servicios</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Términos -->
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-x" onclick="cancelTerms()">&times;</span>
+      <h3>Términos de servicio y condiciones de uso</h3>
+      <p>Al registrarte en ConectaBiz, declaras haber leído, entendido y aceptado nuestros Términos y Condiciones de Uso y nuestra Política de Privacidad. Aceptas que los datos proporcionados son verídicos y que eres responsable del uso de tu cuenta.<br><br>
+      ConectaBiz se reserva el derecho de modificar estos términos en cualquier momento. Te notificaremos sobre cualquier cambio relevante a través de nuestros canales oficiales.<br><br>
+      Si no estás de acuerdo con alguno de los términos, te recomendamos no continuar con el uso de la plataforma.</p>
+      <div class="modal-buttons">
+        <button class="cancel-btn" onclick="cancelTerms()">No estoy de acuerdo</button>
+        <button class="proceed-btn" onclick="proceedTerms()">Proceder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana emergente de éxito -->
+  <div id="successPopup" class="success-popup">
+    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="Success">
+    <span>El registro de su cuenta ha sido exitoso, por favor, inicie sesión</span>
+  </div>
+
+  <script>
+    function handleTermsClick(checkbox) {
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        document.getElementById('termsModal').style.display = 'block';
+      }
+    }
+
+    function cancelTerms() {
+      document.getElementById('termsModal').style.display = 'none';
+      document.getElementById('terms').checked = false;
+    }
+
+    function proceedTerms() {
+      document.getElementById('termsModal').style.display = 'none';
+      document.getElementById('terms').checked = true;
+    }
+
+    function handleRegister() {
+      const accepted = document.getElementById('terms').checked;
+      if (accepted) {
+        const popup = document.getElementById('successPopup');
+        popup.style.display = 'flex';
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+      } else {
+        alert("Debes aceptar los términos y condiciones para registrarte.");
+      }
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('termsModal');
+      if (event.target === modal) {
+        cancelTerms();
+      }
+    }
+  </script>
+
+</body>
+</html>

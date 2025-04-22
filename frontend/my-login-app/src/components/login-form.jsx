@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -15,12 +15,10 @@ import { Label } from "@/components/ui/label";
 export function LoginForm({ className, onSuccess, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // Estados para avisos de error separados
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Credenciales de prueba
   const usuarioValido = {
     email: "andres@gmail.com",
     password: "123456",
@@ -28,36 +26,48 @@ export function LoginForm({ className, onSuccess, ...props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Limpiamos los errores anteriores
     setEmailError("");
     setPasswordError("");
     setMessage("");
 
-    // Verificamos el email
     if (email !== usuarioValido.email) {
       setEmailError("Correo incorrecto. Inténtalo de nuevo.");
       return;
     }
-    // Verificamos la contraseña (solo si el email es correcto)
     if (password !== usuarioValido.password) {
       setPasswordError("Contraseña incorrecta. Inténtalo de nuevo.");
       return;
     }
-    // Si ambos son correctos, se notifica el éxito
     setMessage("¡Inicio de sesión exitoso!");
     if (onSuccess) onSuccess();
   };
 
   return (
     <div className={cn("flex flex-col items-center w-full", className)} {...props}>
-      <div className="w-full bg-[#1f3b5b] text-white p-8 rounded-xl ring-2 shadow-[0_0_12px_rgba(0,0,0,0.3)]">
-        <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
-        <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full"></div>
-        <h2 className="text-xl text-center mb-1">¡Bienvenido nuevamente!</h2>
-        <p className="text-center mb-6">
+      {/* Panel del formulario */}
+      <div
+        className="
+          w-full p-8
+          bg-[var(--form-bg)]
+          text-[var(--foreground)]
+          border border-[var(--border)]
+          rounded-xl shadow-lg
+        "
+      >
+        {/* Encabezado */}
+        <h1 className="text-2xl font-semibold text-center mb-2">
+          CONECTABIZ
+        </h1>
+        <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full" />
+        <h2 className="text-xl text-center mb-1">
+          ¡Bienvenido nuevamente!
+        </h2>
+        <p className="text-center mb-6 text-[var(--foreground)]">
           Ingrese su correo y contraseña para acceder
         </p>
-        <Card className="bg-white text-black shadow-lg ring-1 ring-gray-300">
+
+        {/* Tarjeta interna */}
+        <Card className="border border-[var(--border)] bg-[var(--form-bg)] shadow-sm text-[var(--foreground)]">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
           </CardHeader>
@@ -65,23 +75,36 @@ export function LoginForm({ className, onSuccess, ...props }) {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {/* Email */}
               <div>
-                <Label htmlFor="email" className="block mb-1">
+                <Label htmlFor="email" className="block mb-1 text-[var(--foreground)]">
                   Correo electrónico
                 </Label>
-                <div className="flex items-center bg-gray-100 rounded-md p-2">
+                <div
+                  className="
+                    flex items-center w-full
+                    bg-[var(--background)]
+                    border border-[var(--border)]
+                    rounded-full px-4 py-3 mb-4
+                    focus-within:ring-1 focus-within:ring-[var(--border)]
+                  "
+                >
                   <img
                     src="https://img.icons8.com/ios-filled/50/000000/new-post.png"
                     alt="Email Icon"
-                    className="w-5 h-5 mr-2"
+                    className="w-5 h-5 mr-3"
                   />
                   <Input
                     id="email"
                     type="email"
                     placeholder="Email"
                     required
+                    autoComplete="off"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-transparent outline-none"
+                    className="
+                      flex-1 bg-transparent outline-none
+                      placeholder:text-[var(--border)]
+                      text-[var(--foreground)]
+                    "
                   />
                 </div>
                 {emailError && (
@@ -93,23 +116,36 @@ export function LoginForm({ className, onSuccess, ...props }) {
 
               {/* Contraseña */}
               <div>
-                <Label htmlFor="password" className="block mb-1">
+                <Label htmlFor="password" className="block mb-1 text-[var(--foreground)]">
                   Contraseña
                 </Label>
-                <div className="flex items-center bg-gray-100 rounded-md p-2">
+                <div
+                  className="
+                    flex items-center w-full
+                    bg-[var(--background)]
+                    border border-[var(--border)]
+                    rounded-full px-4 py-3 mb-4
+                    focus-within:ring-1 focus-within:ring-[var(--border)]
+                  "
+                >
                   <img
                     src="https://img.icons8.com/ios-filled/50/000000/key.png"
                     alt="Key Icon"
-                    className="w-5 h-5 mr-2"
+                    className="w-5 h-5 mr-3"
                   />
                   <Input
                     id="password"
                     type="password"
                     placeholder="Contraseña"
                     required
+                    autoComplete="off"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="bg-transparent outline-none"
+                    className="
+                      flex-1 bg-transparent outline-none
+                      placeholder:text-[var(--border)]
+                      text-[var(--foreground)]
+                    "
                   />
                 </div>
                 {passwordError && (
@@ -119,36 +155,59 @@ export function LoginForm({ className, onSuccess, ...props }) {
                 )}
               </div>
 
+              {/* Botón principal */}
               <Button
                 type="submit"
-                className="w-full bg-black text-white font-bold py-2 rounded-md hover:bg-gray-700 transition"
+                className="
+                  w-full py-3
+                  bg-[var(--background)]
+                  text-[var(--foreground)]
+                  border border-[var(--border)]
+                  rounded-full font-bold transition
+                  hover:bg-[var(--foreground)] hover:text-[var(--background)]
+                "
               >
                 Sign In
               </Button>
+
               {message && (
-                <div className="text-center text-sm mt-2">{message}</div>
+                <div className="text-center text-sm mt-2 text-[var(--foreground)]">
+                  {message}
+                </div>
               )}
             </form>
           </CardContent>
         </Card>
 
+        {/* Olvidó contraseña / Registro */}
         <a
           href="#"
-          className="block text-center text-gray-300 mt-4 text-sm underline"
+          className="block text-center mt-4 text-sm underline text-[var(--border)]"
         >
           ¿Olvidó su contraseña?
         </a>
         <p className="text-center text-sm mt-2">
           ¿No tienes cuenta?{" "}
-          <a href="#" className="font-bold text-white underline">
+          <a
+            href="#"
+            className="font-bold underline text-[var(--foreground)]"
+          >
             ¡Regístrese!
           </a>
         </p>
 
+        {/* Botones sociales */}
         <div className="flex flex-col gap-2 mt-6">
           <Button
             type="button"
-            className="flex items-center justify-center gap-2 bg-white text-black py-2 rounded-full hover:bg-gray-200"
+            className="
+              flex items-center justify-center gap-2 w-full py-3
+              bg-[var(--background)]
+              text-[var(--foreground)]
+              border border-[var(--border)]
+              rounded-full transition
+              hover:bg-[var(--foreground)] hover:text-[var(--background)]
+            "
           >
             <img
               src="https://img.icons8.com/color/48/000000/google-logo.png"
@@ -159,7 +218,14 @@ export function LoginForm({ className, onSuccess, ...props }) {
           </Button>
           <Button
             type="button"
-            className="flex items-center justify-center gap-2 bg-white text-black py-2 rounded-full hover:bg-gray-200"
+            className="
+              flex items-center justify-center gap-2 w-full py-3
+              bg-[var(--background)]
+              text-[var(--foreground)]
+              border border-[var(--border)]
+              rounded-full transition
+              hover:bg-[var(--foreground)] hover:text-[var(--background)]
+            "
           >
             <img
               src="https://img.icons8.com/ios-filled/50/000000/phone.png"
@@ -170,7 +236,14 @@ export function LoginForm({ className, onSuccess, ...props }) {
           </Button>
           <Button
             type="button"
-            className="flex items-center justify-center gap-2 bg-white text-black py-2 rounded-full hover:bg-gray-200"
+            className="
+              flex items-center justify-center gap-2 w-full py-3
+              bg-[var(--background)]
+              text-[var(--foreground)]
+              border border-[var(--border)]
+              rounded-full transition
+              hover:bg-[var(--foreground)] hover:text-[var(--background)]
+            "
           >
             <img
               src="https://img.icons8.com/color/48/000000/microsoft.png"
