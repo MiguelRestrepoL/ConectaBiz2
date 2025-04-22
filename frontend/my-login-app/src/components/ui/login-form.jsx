@@ -1,14 +1,9 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -43,7 +38,10 @@ export function LoginForm({ className, onSuccess, ...props }) {
   };
 
   return (
-    <div className={cn("flex flex-col items-center w-full", className)} {...props}>
+    <div
+      className={cn("flex flex-col items-center w-full", className)}
+      {...props}
+    >
       {/* Panel del formulario */}
       <div
         className="
@@ -55,13 +53,9 @@ export function LoginForm({ className, onSuccess, ...props }) {
         "
       >
         {/* Encabezado */}
-        <h1 className="text-2xl font-semibold text-center mb-2">
-          CONECTABIZ
-        </h1>
+        <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full" />
-        <h2 className="text-xl text-center mb-1">
-          ¡Bienvenido nuevamente!
-        </h2>
+        <h2 className="text-xl text-center mb-1">¡Bienvenido nuevamente!</h2>
         <p className="text-center mb-6 text-[var(--foreground)]">
           Ingrese su correo y contraseña para acceder
         </p>
@@ -75,7 +69,10 @@ export function LoginForm({ className, onSuccess, ...props }) {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {/* Email */}
               <div>
-                <Label htmlFor="email" className="block mb-1 text-[var(--foreground)]">
+                <Label
+                  htmlFor="email"
+                  className="block mb-1 text-[var(--foreground)]"
+                >
                   Correo electrónico
                 </Label>
                 <div
@@ -116,7 +113,10 @@ export function LoginForm({ className, onSuccess, ...props }) {
 
               {/* Contraseña */}
               <div>
-                <Label htmlFor="password" className="block mb-1 text-[var(--foreground)]">
+                <Label
+                  htmlFor="password"
+                  className="block mb-1 text-[var(--foreground)]"
+                >
                   Contraseña
                 </Label>
                 <div
@@ -178,23 +178,6 @@ export function LoginForm({ className, onSuccess, ...props }) {
             </form>
           </CardContent>
         </Card>
-
-        {/* Olvidó contraseña / Registro */}
-        <a
-          href="#"
-          className="block text-center mt-4 text-sm underline text-[var(--border)]"
-        >
-          ¿Olvidó su contraseña?
-        </a>
-        <p className="text-center text-sm mt-2">
-          ¿No tienes cuenta?{" "}
-          <a
-            href="#"
-            className="font-bold underline text-[var(--foreground)]"
-          >
-            ¡Regístrese!
-          </a>
-        </p>
 
         {/* Botones sociales */}
         <div className="flex flex-col gap-2 mt-6">

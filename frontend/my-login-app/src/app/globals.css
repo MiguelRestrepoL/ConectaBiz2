@@ -5,15 +5,14 @@
 :root {
   --background: linear-gradient(135deg, #364f68 17%, #4e7aa5 61%, #659ed3 100%);
   --form-bg:    rgba(0, 0, 0, 0.5);
-  --foreground: #FFFFFF;    /* ¡Texto blanco en light! */
+  --foreground: #FFFFFF;
   --border:     #E2E8F0;
 }
 
-/* Dark mode con clase .dark */
 .dark {
   --background: #1A202C;
   --form-bg:    rgba(45, 55, 72, 0.8);
-  --foreground: #E2E8F0;    /* Texto gris claro en dark */
+  --foreground: #E2E8F0;
   --border:     #4A5568;
 }
 
