@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -8,41 +8,42 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function LoginForm({ className, onSuccess, ...props }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [email, setEmail]                 = useState("");
+  const [password, setPassword]           = useState("");
+  const [emailError, setEmailError]       = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage]             = useState("");
 
-  const usuarioValido = {
-    email: "andres@gmail.com",
-    password: "123456",
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
     setMessage("");
 
-    if (email !== usuarioValido.email) {
-      setEmailError("Correo incorrecto. Inténtalo de nuevo.");
+    // Llamada a la API de login
+    const resp = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const body = await resp.json();
+
+    if (!resp.ok) {
+      if (resp.status === 401) {
+        setPasswordError(body.error || "Credenciales incorrectas");
+      } else {
+        setEmailError(body.error || "Error al iniciar sesión");
+      }
       return;
     }
-    if (password !== usuarioValido.password) {
-      setPasswordError("Contraseña incorrecta. Inténtalo de nuevo.");
-      return;
-    }
+
+    // Éxito
     setMessage("¡Inicio de sesión exitoso!");
-    if (onSuccess) onSuccess();
+    onSuccess?.();
   };
 
   return (
-    <div
-      className={cn("flex flex-col items-center w-full", className)}
-      {...props}
-    >
-      {/* Panel del formulario */}
+    <div className={cn("flex flex-col items-center w-full", className)} {...props}>
       <div
         className="
           w-full p-8
@@ -52,7 +53,6 @@ export function LoginForm({ className, onSuccess, ...props }) {
           rounded-xl shadow-lg
         "
       >
-        {/* Encabezado */}
         <h1 className="text-2xl font-semibold text-center mb-2">CONECTABIZ</h1>
         <div className="w-10 h-10 mx-auto mb-4 border-4 border-pink-400 rounded-full" />
         <h2 className="text-xl text-center mb-1">¡Bienvenido nuevamente!</h2>
@@ -60,7 +60,6 @@ export function LoginForm({ className, onSuccess, ...props }) {
           Ingrese su correo y contraseña para acceder
         </p>
 
-        {/* Tarjeta interna */}
         <Card className="border border-[var(--border)] bg-[var(--form-bg)] shadow-sm text-[var(--foreground)]">
           <CardHeader>
             <CardTitle className="text-center">Inicio de sesión</CardTitle>
@@ -69,10 +68,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {/* Email */}
               <div>
-                <Label
-                  htmlFor="email"
-                  className="block mb-1 text-[var(--foreground)]"
-                >
+                <Label htmlFor="email" className="block mb-1 text-[var(--foreground)]">
                   Correo electrónico
                 </Label>
                 <div
@@ -81,7 +77,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     bg-[var(--background)]
                     border border-[var(--border)]
                     rounded-full px-4 py-3 mb-4
-                    focus-within:ring-1 focus-within:ring-[var(--border)]
+                    focus-within:border-[var(--accent)]
                   "
                 >
                   <img
@@ -97,26 +93,17 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     autoComplete="off"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="
-                      flex-1 bg-transparent outline-none
-                      placeholder:text-[var(--border)]
-                      text-[var(--foreground)]
-                    "
+                    className="flex-1 bg-transparent outline-none placeholder:text-[var(--border)] text-[var(--foreground)]"
                   />
                 </div>
                 {emailError && (
-                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-2 text-sm">
-                    {emailError}
-                  </div>
+                  <div className="text-red-500 text-sm">{emailError}</div>
                 )}
               </div>
 
               {/* Contraseña */}
               <div>
-                <Label
-                  htmlFor="password"
-                  className="block mb-1 text-[var(--foreground)]"
-                >
+                <Label htmlFor="password" className="block mb-1 text-[var(--foreground)]">
                   Contraseña
                 </Label>
                 <div
@@ -125,7 +112,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     bg-[var(--background)]
                     border border-[var(--border)]
                     rounded-full px-4 py-3 mb-4
-                    focus-within:ring-1 focus-within:ring-[var(--border)]
+                    focus-within:border-[var(--accent)]
                   "
                 >
                   <img
@@ -141,21 +128,14 @@ export function LoginForm({ className, onSuccess, ...props }) {
                     autoComplete="off"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="
-                      flex-1 bg-transparent outline-none
-                      placeholder:text-[var(--border)]
-                      text-[var(--foreground)]
-                    "
+                    className="flex-1 bg-transparent outline-none placeholder:text-[var(--border)] text-[var(--foreground)]"
                   />
                 </div>
                 {passwordError && (
-                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-2 text-sm">
-                    {passwordError}
-                  </div>
+                  <div className="text-red-500 text-sm">{passwordError}</div>
                 )}
               </div>
 
-              {/* Botón principal */}
               <Button
                 type="submit"
                 className="
@@ -171,7 +151,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
               </Button>
 
               {message && (
-                <div className="text-center text-sm mt-2 text-[var(--foreground)]">
+                <div className="text-green-500 text-center text-sm mt-2">
                   {message}
                 </div>
               )}
@@ -179,7 +159,6 @@ export function LoginForm({ className, onSuccess, ...props }) {
           </CardContent>
         </Card>
 
-        {/* Botones sociales */}
         <div className="flex flex-col gap-2 mt-6">
           <Button
             type="button"
@@ -195,7 +174,7 @@ export function LoginForm({ className, onSuccess, ...props }) {
             <img
               src="https://img.icons8.com/color/48/000000/google-logo.png"
               alt="Google icon"
-              className="w-5 h-5"
+                  className="w-5 h-5"
             />
             Continuar con Google
           </Button>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -6,22 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-/**
- * Componente de registro de usuario.
- * Al registrarse con éxito, llama a onRegisterSuccess.
- */
 export function RegisterForm({ className, onRegisterSuccess, ...props }) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailConfirm, setEmailConfirm] = useState("");
-  const [password, setPassword] = useState("");
+  const [username,        setUsername       ] = useState("");
+  const [email,           setEmail          ] = useState("");
+  const [emailConfirm,    setEmailConfirm   ] = useState("");
+  const [password,        setPassword       ] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [terms, setTerms] = useState(false);
-  const [error, setError] = useState("");
+  const [terms,           setTerms          ] = useState(false);
+  const [error,           setError          ] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     // Validaciones básicas
     if (!username || !email || !password) {
       setError("Complete todos los campos");
@@ -39,19 +36,33 @@ export function RegisterForm({ className, onRegisterSuccess, ...props }) {
       setError("Debe aceptar términos y condiciones");
       return;
     }
-    // Registro exitoso
-    if (onRegisterSuccess) onRegisterSuccess({ username, email, password });
+
+    // Llamada a la API de registro
+    const resp = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        acceptedTerms: terms,
+      }),
+    });
+    const body = await resp.json();
+
+    if (!resp.ok) {
+      setError(body.error || "Error desconocido");
+      return;
+    }
+
+    // Éxito
+    onRegisterSuccess();
   };
 
   return (
-    <div
-      className={cn("flex flex-col items-center w-full", className)}
-      {...props}
-    >
+    <div className={cn("flex flex-col items-center w-full", className)} {...props}>
       <div className="w-full p-8 bg-[var(--form-bg)] text-[var(--foreground)] border border-[var(--border)] rounded-xl shadow-lg">
-        <h1 className="text-2xl font-semibold text-center mb-4">
-          Crear cuenta
-        </h1>
+        <h1 className="text-2xl font-semibold text-center mb-4">Crear cuenta</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Usuario */}
           <div>
