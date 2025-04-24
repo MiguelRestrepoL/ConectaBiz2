@@ -11,7 +11,7 @@ export async function POST(req) {
   const client = await pool.connect();
   try {
     const { rows } = await client.query(
-      'SELECT id, password_hash FROM users WHERE email = $1',
+      'SELEC id, password_hash FROM users WHERE email = $1',
       [email]
     );
     // Si no existe o la comparación falla:
