@@ -92,9 +92,9 @@ export function PlanSelector() {
             cobro. Puedes cambiar el plan cuando desees.
           </p>
           {/* Contenedor de planes */}
-          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-5 mt-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
             {/* PLAN - Free */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155]">
               <span className="bg-[#3b82f6] text-white px-2 py-1 text-xs rounded-full mb-2 inline-block">
                 Más popular
               </span>
@@ -128,7 +128,7 @@ export function PlanSelector() {
               </p>
             </div>
             {/* PLAN - Premium */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155]">
               <h3 className="mb-2 text-xl text-white">Premium</h3>
               <p className="mb-2">
                 <em>
@@ -163,7 +163,7 @@ export function PlanSelector() {
               </p>
             </div>
             {/* PLAN - Elite */}
-            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155] w-full md:w-[280px]">
+            <div className="bg-[#1e293b] p-5 rounded-[15px] shadow-lg border border-[#334155]">
               <h3 className="mb-2 text-xl text-white">Elite</h3>
               <p className="mb-2">
                 <em>
