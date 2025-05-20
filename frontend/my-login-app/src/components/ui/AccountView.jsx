@@ -63,7 +63,7 @@ export function AccountView() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-        Administración de tu cuent
+        Administración de tu cuenta
       </h2>
 
       {error && (
