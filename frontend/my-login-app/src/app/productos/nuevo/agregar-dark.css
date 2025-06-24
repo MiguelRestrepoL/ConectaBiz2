@@ -1,24 +1,13 @@
-html.dark .productos-page body {
-  background: #0f172a;
-  color: #f1f5f9;
-}
-html.dark .productos-page .card {
-  background: #1e293b;
-}
+/* ---------- MODO OSCURO ---------- */
+html.dark .productos-page body          { background:#0f172a; color:#f1f5f9; }
+html.dark .productos-page .card         { background:#1e293b; }
+html.dark .productos-page .card h4,
+html.dark .productos-page label,
+html.dark .productos-page .upload-caption{ color:#e2e8f0; }
 html.dark .productos-page .card input,
 html.dark .productos-page .card select,
-html.dark .productos-page .card textarea {
-  background: #334155;
-  color: #f8fafc;
-  border-color: #475569;
+html.dark .productos-page .card textarea{
+  background:#334155; color:#f8fafc; border-color:#475569;
 }
-html.dark .productos-page .upload-caption {
-  color: #cbd5e1;
-}
-html.dark .productos-page .badge {
-  background: #334155;
-  color: #f1f5f9;
-}
-html.dark .productos-page .save {
-  background: #3b82f6;
-}
+html.dark .productos-page .badge        { background:#334155; color:#f1f5f9; }
+html.dark .productos-page .save         { background:#3b82f6; }

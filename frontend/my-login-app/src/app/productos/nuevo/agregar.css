@@ -1,86 +1,57 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ---------- RESET ---------- */
+* { box-sizing:border-box; margin:0; padding:0; }
 
+/* ---------- ÁREA GLOBAL DE ESTA VISTA ---------- */
 .productos-page body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #bae6fd;
-  color: #0f172a;
+  font-family:'Segoe UI',sans-serif;
+  background:#bae6fd;
+  color:#0f172a;                 /* texto por defecto oscuro */
 }
 
-/* Reutilizamos header + sidebar del listado,
-   aquí sólo van reglas extras del formulario */
-.productos-page .form-layout {
-  display: flex;
-  margin-top: 70px;
-  margin-left: 240px;
-}
+/* --- Corrige doble margen --- */
+.productos-page .main-container { margin-left:0; }  /* ← quita 240px aquí */
+.productos-page .form-layout    { margin-top:70px; margin-left:240px; }
 
+/* ---------- PANELES ---------- */
 .productos-page .left-panel,
 .productos-page .right-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
+  display:flex; flex-direction:column; gap:22px;
 }
+.productos-page .left-panel { flex:3; }
+.productos-page .right-panel{ flex:1; }
 
-.productos-page .left-panel {
-  flex: 3;
-}
-
-.productos-page .right-panel {
-  flex: 1;
-}
-
+/* ---------- CARDS ---------- */
 .productos-page .card {
-  background-color: #f1f5f9;
-  border-radius: 10px;
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  background:#f1f5f9; border-radius:10px; padding:20px 24px;
+  display:flex; flex-direction:column; gap:14px;
 }
-
+/* grid para precios */
 .productos-page .card.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
 }
 
-.productos-page .card h4 {
-  font-size: 15px;
-}
+/* color explícito de headings y textos */
+.productos-page .card h4,
+.productos-page .upload-caption,
+.productos-page label { color:#0f172a; font-size:15px; }
 
 .productos-page .card input,
 .productos-page .card select,
 .productos-page .card textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #94a3b8;
-  background: #fff;
+  width:100%; padding:10px 12px; border-radius:6px;
+  border:1px solid #94a3b8; background:#fff; color:#0f172a;
 }
 
-.productos-page .upload-caption {
-  text-align: center;
-  color: #334155;
+/* badge / botón */
+.productos-page .badge{
+  background:#e2e8f0; border:none; padding:6px 14px;
+  border-radius:6px; cursor:pointer; color:#0f172a;
+}
+.productos-page .save{
+  align-self:flex-start; background:#2563eb; color:#fff;
+  border:none; padding:10px 22px; border-radius:8px; cursor:pointer;
 }
 
-.productos-page .badge {
-  background: #e2e8f0;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
 
-.productos-page .save {
-  align-self: flex-start;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 8px;
-  cursor: pointer;
-}
