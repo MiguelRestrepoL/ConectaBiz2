@@ -15,6 +15,7 @@
 .productos-page .form-layout {
   display: flex;
   margin-top: 70px;
+  margin-left: 240px;
 }
 
 .productos-page .left-panel,
