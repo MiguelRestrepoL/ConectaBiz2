@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { PlanGrid } from "./plan-grid"; // extrae tu grid de planes aquí
 import { AccountView } from "./AccountView"; // nuevo componente
-import { Link } from "next/link";
+import  Link  from "next/link";
 
 export function PlanSelector() {
   const [activeTab, setActiveTab] = useState("plans");
