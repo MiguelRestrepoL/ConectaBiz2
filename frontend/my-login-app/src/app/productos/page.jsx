@@ -1,9 +1,11 @@
 "use client";
 import "./productos.css";
 import "./productos-dark.css";
+import { useRouter } from "next/navigation";
 
 export default function ProductsPage() {
   const user = "Andrés"; // ⚠️ Sustituye por tu sesión real
+  const router = useRouter();
 
   return (
     <>
@@ -56,7 +58,7 @@ export default function ProductsPage() {
             </p>
             <button
               className="add-button"
-              onClick={() => (location.href = "/productos/nuevo")}
+              onClick={() => router.push("/productos/nuevo")}
             >
               + Agregar producto
             </button>

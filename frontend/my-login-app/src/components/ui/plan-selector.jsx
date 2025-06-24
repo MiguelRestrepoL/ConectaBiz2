@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PlanGrid } from "./plan-grid"; // extrae tu grid de planes aquí
 import { AccountView } from "./AccountView"; // nuevo componente
+import { Link } from "next/link";
 
 export function PlanSelector() {
   const [activeTab, setActiveTab] = useState("plans");
@@ -52,10 +53,10 @@ export function PlanSelector() {
               className={`
                 p-2 rounded-lg cursor-pointer flex items-center gap-2 text-sm
               ${
-                  activeTab === "plans"
-                    ? "bg-[#334155]"
-                    : "bg-transparent hover:bg-[#334155]"
-                }
+                activeTab === "plans"
+                  ? "bg-[#334155]"
+                  : "bg-transparent hover:bg-[#334155]"
+              }
               `}
               onClick={() => setActiveTab("plans")}
             >
@@ -64,9 +65,26 @@ export function PlanSelector() {
             <li className="mb-3 p-2 border border-[#334155] rounded-lg bg-[#334155] flex items-center gap-2 text-sm">
               📦 Pedidos
             </li>
-            <li className="mb-3 p-2 border border-[#334155] rounded-lg bg-[#334155] flex items-center gap-2 text-sm">
-              🛒 Productos
+            <li
+              className={`mb-3 p-2 border border-[#334155] rounded-lg flex
+              items-center gap-2 text-sm cursor-pointer
+              ${
+                // si ya estás en /productos 👉 mantén highlight
+                typeof window !== "undefined" &&
+                window.location.pathname.startsWith("/productos")
+                  ? "bg-[#334155]"
+                  : "bg-transparent hover:bg-[#334155]"
+              }`}
+            >
+              {/* usamos Link para navegación SPA */}
+              <Link
+                className="flex items-center gap-2 w-full h-full"
+                href="/productos"
+              >
+                🛒 Productos
+              </Link>
             </li>
+
             <li className="mb-3 p-2 border border-[#334155] rounded-lg bg-[#334155] flex items-center gap-2 text-sm">
               👤 Cliente
             </li>
