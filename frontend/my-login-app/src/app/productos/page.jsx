@@ -1,97 +1,80 @@
-// src/app/productos/page.jsx
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function ProductsPage() {
-  const user   = "Andrés";          // ⚠️ Sustituye por tu sesión real
   const router = useRouter();
 
-  /**  ← Botón de retorno
-   *  ───────────────────
-   *  • Si el PlanSelector está en el historial   →  router.back()
-   *  • Si abrimos /productos directamente        →  router.push("/panel")
-   */
-  function handleBack() {
-    if (typeof window !== "undefined" && window.history.state?.idx > 0) {
-      router.back();
-    } else {
-      router.push("/panel");
-    }
-  }
+  /* ---------- ① estado ---------- */
+  const [products, setProducts] = useState([]);
+  const [loading,  setLoading ] = useState(true);
+  const [error,    setError   ] = useState("");
+
+  /* ---------- ② cargar al montar ---------- */
+  useEffect(() => {
+    fetch("/api/products")
+      .then(r => r.ok ? r.json() : Promise.reject("Error al cargar"))
+      .then(setProducts)
+      .catch(setError)
+      .finally(() => setLoading(false));
+  }, []);
+
+  /* ---------- ③ render ---------- */
+  if (loading) return <p>Cargando…</p>;
+  if (error)   return <p style={{color:"red"}}>{error}</p>;
 
   return (
     <>
-      {/* ---------- HEADER ---------- */}
-      <header className="header">
-        <div className="header-left">
-          <span className="logo">CONECTABIZ</span>
-          <span className="welcome">¡Bienvenido nuevamente {user}!</span>
-        </div>
+      {/* …tu header/sidebar tal cual… */}
 
-        <div className="search-container">
-          <input className="search-bar" placeholder="Buscar" />
-        </div>
+      <main className="content">
+        <button
+          className="add-button"
+          onClick={() => router.push("/productos/nuevo")}
+        >
+          + Agregar producto
+        </button>
 
-        <div className="header-right">
-          <button type="button" className="back-button" onClick={handleBack}>
-            ← Inicio
-          </button>
-          <button type="button" className="store-button">🛒 Mi tienda</button>
-        </div>
-      </header>
-
-      {/* ---------- LAYOUT ---------- */}
-      <div className="main-container">
-        {/* ===== Sidebar ===== */}
-        <aside className="sidebar">
-          <div className="store-section">
-            <img src="/logo-conectabiz-bg.png" alt="Tienda" />
-            <small style={{ color: "#ddd" }}>cbiz.myshop.com</small>
-          </div>
-
-          <input placeholder="Buscar" />
-          <button className="is-active">Inicio</button>
-          <button>Pedidos</button>
-          <button>Productos</button>
-          <button className="sub">Inventario</button>
-          <button className="sub">Órdenes compra</button>
-          <button>Cliente</button>
-          <button>Contenido</button>
-          <button>Estadísticas</button>
-          <button>Marketing</button>
-          <button>Descuentos</button>
-          <button>Suscripción</button>
-          <button>Punto físico</button>
-          <button>Tienda Online</button>
-        </aside>
-
-        {/* ===== Contenido ===== */}
-        <main className="content">
-          <section className="product-card">
-            <h3>Agrega tus productos</h3>
-            <p>¡Inicia abasteciendo productos para satisfacer a tus clientes!</p>
-
-            <button
-              className="add-button"
-              onClick={() => router.push("/productos/nuevo")}
+        {/* LISTADO */}
+        <ul className="mt-6 space-y-4">
+          {products.map(p => (
+            <li
+              key={p.id}
+              className="card flex justify-between items-center"
             >
-              + Agregar producto
-            </button>
-            <button className="import-button">📁 Importar</button>
-          </section>
+              <div>
+                <h4 className="font-semibold">{p.title}</h4>
+                <small>{p.price.toLocaleString()} €</small>
+              </div>
 
-          <section className="info-card">
-            <h4>Buscar productos para vender</h4>
-            <p>
-              Haciendo uso de dropshipping, los productos se saltan un proceso
-              haciendo que sólo debas pagar por lo que vendas.
-            </p>
-            <button className="explore">📦 Explorar más al respecto</button>
-          </section>
-        </main>
-      </div>
+              <div className="flex gap-2">
+                <Link
+                  href={`/productos/${p.id}`}
+                  className="badge"
+                >
+                  ✏️ Editar
+                </Link>
+                <button
+                  className="badge"
+                  onClick={() => handleDelete(p.id)}
+                >
+                  🗑️ Eliminar
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </main>
     </>
   );
+
+  /* ---------- ④ delete ---------- */
+  async function handleDelete(id) {
+    if (!confirm("¿Eliminar producto?")) return;
+    const r = await fetch(`/api/products/${id}`, { method:"DELETE" });
+    if (r.ok) setProducts(prod => prod.filter(x => x.id !== id));
+    else alert("No se pudo eliminar");
+  }
 }
