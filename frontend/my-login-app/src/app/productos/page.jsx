@@ -1,43 +1,41 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function ProductsPage() {
-  const user = "Andrés"; // ⚠️ Sustituye por tu sesión real
-  const router = useRouter();
+  const user    = "Andrés";          // ⚠️ Sustituye por tu sesión/ctx real
+  const router  = useRouter();
 
   return (
     <>
-      <div className="header">
+      {/* ---------- HEADER ---------- */}
+      <header className="header">
         <div className="header-left">
-          <div className="logo">CONECTABIZ</div>
-          <div className="welcome">¡Bienvenido nuevamente {user}!</div>
+          <span className="logo">CONECTABIZ</span>
+          <span className="welcome">¡Bienvenido nuevamente {user}!</span>
         </div>
 
         <div className="search-container">
-          <input type="text" className="search-bar" placeholder="Buscar" />
+          <input className="search-bar" placeholder="Buscar" />
         </div>
 
         <div className="header-right">
-          <Link href="/" className="back-button">
-            ← Inicio
-          </Link>
-          <button type="button" className="store-button">
-            🛒 Mi tienda
-          </button>
+          <Link href="/" className="back-button">← Inicio</Link>
+          <button type="button" className="store-button">🛒 Mi tienda</button>
         </div>
-      </div>
+      </header>
 
+      {/* ---------- LAYOUT ---------- */}
       <div className="main-container">
         {/* ===== Sidebar ===== */}
         <aside className="sidebar">
           <div className="store-section">
-            {/* pon la imagen en /public y ajústala */}
             <img src="/logo-conectabiz-bg.png" alt="Tienda" />
-            <div style={{ fontSize: 13, color: "#ddd" }}>cbiz.myshop.com</div>
+            <small style={{color:"#ddd"}}>cbiz.myshop.com</small>
           </div>
 
-          <input type="text" placeholder="Buscar" />
+          <input placeholder="Buscar" />
           <button className="is-active">Inicio</button>
           <button>Pedidos</button>
           <button>Productos</button>
@@ -57,9 +55,8 @@ export default function ProductsPage() {
         <main className="content">
           <section className="product-card">
             <h3>Agrega tus productos</h3>
-            <p>
-              ¡Inicia abasteciendo productos para satisfacer a tus clientes!
-            </p>
+            <p>¡Inicia abasteciendo productos para satisfacer a tus clientes!</p>
+
             <button
               className="add-button"
               onClick={() => router.push("/productos/nuevo")}

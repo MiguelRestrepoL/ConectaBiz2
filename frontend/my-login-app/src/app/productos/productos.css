@@ -1,114 +1,110 @@
-* {
+/* RESET sólo dentro de productos */
+.productos-page,
+.productos-page *,
+.productos-page *::before,
+.productos-page *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.productos-page body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #bae6fd;
-  color: #0f172a;
-}
-
-
-/* ====== HEADER ====== */
+/* ===== HEADER ===== */
 .productos-page .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 70px;
-  background-color: #e0f2fe;
   display: flex;
   align-items: center;
-  padding: 0 25px;
   gap: 25px;
+  background: #e0f2fe;
+  padding: 0 25px;
   z-index: 10;
 }
-
 .productos-page .header-left {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
 .productos-page .logo {
-  font-weight: bold;
+  font: bold 20px/1 "Segoe UI", sans-serif;
   color: #1d4ed8;
-  font-size: 20px;
 }
-
 .productos-page .welcome {
-  font-size: 18px;
+  font: 18px/1 "Segoe UI", sans-serif;
   color: #334155;
 }
-
 .productos-page .search-container {
   flex-grow: 1;
   display: flex;
   justify-content: center;
 }
-
 .productos-page .search-bar {
-  background-color: #fff;
-  border-radius: 25px;
+  width: 300px;
   padding: 8px 20px;
   border: none;
-  width: 300px;
+  border-radius: 25px;
+  background: #fff;
 }
-
-.productos-page .header-right .store-button {
-  background-color: #3b82f6;
+.productos-page .store-button {
+  background: #3b82f6;
   color: #fff;
-  border: none;
   padding: 8px 18px;
+  border: none;
   border-radius: 25px;
   cursor: pointer;
 }
-
-/* ====== LAYOUT ====== */
-.productos-page .main-container {
-  display: flex;
-  margin-top: 70px;       /* deja espacio al header fijo */
+.productos-page .back-button {
+  margin-right: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: #334155;
+  color: #f8fafc;
+  text-decoration: none;
+}
+.productos-page .back-button:hover {
+  background: #1e293b;
 }
 
+/* ===== LAYOUT ===== */
+.productos-page .main-container {
+  display: flex;
+  margin-top: 70px;
+}
 .productos-page .sidebar {
   width: 240px;
-  background-color: #1e293b;
-  padding: 20px 15px;
   height: 100vh;
+  padding: 20px 15px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   position: fixed;
   top: 70px;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #1e293b;
 }
-
-.productos-page .sidebar input[type="text"] {
+.productos-page .sidebar input {
   padding: 6px 12px;
   border-radius: 20px;
   border: none;
-  background-color: #334155;
+  background: #334155;
   color: #f8fafc;
 }
-
 .productos-page .sidebar button {
   background: #0f172a;
   color: #f8fafc;
   border: none;
   padding: 10px;
-  text-align: left;
   border-radius: 4px;
+  text-align: left;
   cursor: pointer;
 }
-
 .productos-page .sidebar button:hover,
 .productos-page .sidebar button.is-active {
-  background-color: #334155;
+  background: #334155;
 }
-
 .productos-page .sidebar .sub {
   padding-left: 25px;
   font-size: 14px;
@@ -116,31 +112,29 @@
 
 .productos-page .content {
   margin-left: 240px;
-  padding: 30px;
   width: 100%;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-/* ====== CARDS ====== */
+/* ===== CARDS ===== */
 .productos-page .product-card,
-.info-card {
-  background-color: #f1f5f9;
+.productos-page .info-card {
+  background: #f1f5f9;
   border-radius: 10px;
   padding: 25px 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 .productos-page .product-card h3 {
   font-size: 20px;
   color: #0f172a;
 }
-
-.productos-page .product-card .add-button {
-  background-color: #2563eb;
+.productos-page .add-button {
+  background: #2563eb;
   color: #fff;
   border: none;
   padding: 10px 22px;
@@ -148,8 +142,7 @@
   cursor: pointer;
   margin-right: 10px;
 }
-
-.productos-page .product-card .import-button {
+.productos-page .import-button {
   background: transparent;
   border: 2px solid #2563eb;
   color: #2563eb;
@@ -157,13 +150,11 @@
   border-radius: 6px;
   cursor: pointer;
 }
-
 .productos-page .info-card h4 {
   font-size: 17px;
   color: #0f172a;
 }
-
-.productos-page .info-card button.explore {
+.productos-page .explore {
   margin-top: 10px;
   background: #334155;
   color: #f8fafc;
@@ -172,13 +163,3 @@
   border-radius: 6px;
   cursor: pointer;
 }
-
-.back-button {
-  margin-right: 12px;
-  padding: 6px 14px;
-  border-radius: 6px;
-  background: #334155;
-  color: #f8fafc;
-  text-decoration: none;
-}
-.back-button:hover { background:#1e293b; }

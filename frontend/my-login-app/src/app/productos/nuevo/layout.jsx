@@ -1,9 +1,8 @@
 // NO lleva "use client"
-import "./agregar.css";
-import "./agregar-dark.css";
-import "../productos.css"
-import "../productos-dark.css"
+import "../productos.css";         // light + reset encapsulado
+import "../productos-dark.css";    // variantes dark
 
-export default function NuevoProductoLayout({ children }) {
+export default function ProductosLayout({ children }) {
+  // Encapsulamos los estilos con un wrapper .productos-page
   return <div className="productos-page">{children}</div>;
 }

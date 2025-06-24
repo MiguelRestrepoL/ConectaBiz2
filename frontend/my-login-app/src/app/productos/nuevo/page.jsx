@@ -4,66 +4,60 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import "./agregar.css";
-import "./agregar-dark.css";
+import "./agregar.css"; // estilos light   ( SÓLO este form )
+import "./agregar-dark.css"; // variantes dark  ( SÓLO este form )
 
 /**
- * /productos/nuevo   – Formulario para crear un nuevo producto
+ * /productos/nuevo – Formulario para crear un producto
  */
 export default function AddProductPage() {
-  const user   = "Andrés";          // ← sustituye por tu sesión real
   const router = useRouter();
+  const user = "Andrés"; // ⚠️ reemplaza por tu sesión real
 
-  /* ---------- estado de cada campo ---------- */
-  const [title,        setTitle]        = useState("");
-  const [description,  setDescription]  = useState("");
-  const [price,        setPrice]        = useState("");
-  const [comparePrice, setComparePrice] = useState("");
-  const [cost,         setCost]         = useState("");
-  const [status,       setStatus]       = useState("Activo");
-  const [error,        setError]        = useState("");
-  const [saving,       setSaving]       = useState(false);
+  /* ───────────── Estados del formulario ───────────── */
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [status, setStatus] = useState("Activo");
 
-  /* ---------- submit -> API ---------- */
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  /* ───────────── Guardar en BD vía API ───────────── */
   async function handleSave(e) {
     e.preventDefault();
-    setError("");
     setSaving(true);
+    setError("");
 
-    const resp = await fetch("/api/products", {
+    const res = await fetch("/api/products", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title,
         description,
         price: Number(price),
-        comparePrice: Number(comparePrice) || null,
-        cost: Number(cost) || null,
         status,
         publication: "online",
-        trackInventory: false,
       }),
     });
-
-    const body = await resp.json();
+    const body = await res.json();
     setSaving(false);
 
-    if (!resp.ok) {
+    if (!res.ok) {
       setError(body.error || "Error al guardar");
       return;
     }
-
-    // Éxito → volvemos al listado
-    router.push("/productos");
+    router.push("/productos"); // volver al listado
   }
 
+  /* ────────────────── UI ────────────────── */
   return (
     <form onSubmit={handleSave}>
       {/* ---------- HEADER ---------- */}
-      <div className="header">
+      <header className="header">
         <div className="header-left">
-          <div className="logo">CONECTABIZ</div>
-          <div className="welcome">¡Bienvenido nuevamente {user}!</div>
+          <span className="logo">CONECTABIZ</span>
+          <span className="welcome">¡Bienvenido nuevamente {user}!</span>
         </div>
 
         <div className="search-container">
@@ -71,26 +65,24 @@ export default function AddProductPage() {
         </div>
 
         <div className="header-right">
-          <Link href="/" className="back-button">
-            ← Inicio
+          {/* Volver al listado de productos */}
+          <Link href="/productos" className="back-button">
+            ← Listado
           </Link>
-
           <button type="button" className="store-button">
             🛒 Mi tienda
           </button>
         </div>
-      </div>
+      </header>
 
       {/* ---------- LAYOUT ---------- */}
       <div className="main-container form-layout">
-        {/* ===== Sidebar (idéntica al listado) ===== */}
-        <aside className="sidebar">
-          {/* … copia exacta del sidebar del listado … */}
-        </aside>
+        {/* ===== Sidebar (idéntico al listado) */}
+        <aside className="sidebar">{/* … tu sidebar aquí … */}</aside>
 
-        {/* ===== LEFT ===== */}
+        {/* ===== Panel izquierdo ===== */}
         <section className="left-panel">
-          {/* --- Título & descripción --- */}
+          {/* Información básica */}
           <div className="card">
             <h4>Título</h4>
             <input
@@ -106,27 +98,17 @@ export default function AddProductPage() {
             />
           </div>
 
-          {/* --- Multimedia --- */}
+          {/* Multimedia */}
           <div className="card">
             <h4>Multimedia</h4>
             <span className="upload-caption">
-              <strong>Subir nuevo</strong> | Seleccionar existente
+              <strong>Subir nuevo</strong> │ Seleccionar existente
               <br />
               <small>Acepta imágenes, vídeos o modelos 3D</small>
             </span>
           </div>
 
-          {/* --- Categorías --- */}
-          <div className="card">
-            <h4>Categorías</h4>
-            <select defaultValue="">
-              <option value="" disabled>
-                Elige una categoría del producto
-              </option>
-            </select>
-          </div>
-
-          {/* --- Precio & márgenes --- */}
+          {/* Precio */}
           <div className="card grid-3">
             <div>
               <h4>Precio</h4>
@@ -137,54 +119,27 @@ export default function AddProductPage() {
                 required
               />
             </div>
-            <div>
-              <h4>Precio comparativa</h4>
-              <input
-                type="number"
-                value={comparePrice}
-                onChange={(e) => setComparePrice(e.target.value)}
-              />
-            </div>
-            <div>
-              <h4>Costo por artículo</h4>
-              <input
-                type="number"
-                value={cost}
-                onChange={(e) => setCost(e.target.value)}
-              />
-            </div>
-            <div>
-              <h4>Beneficio</h4>
-              <input type="number" placeholder="0,00" disabled />
-            </div>
-            <div>
-              <h4>Margen</h4>
-              <input type="number" placeholder="0,00" disabled />
-            </div>
+            {/* campos comparativa / coste / margen opcionales */}
           </div>
 
-          {/* --- Inventario (placeholder) --- */}
+          {/* Inventario (placeholder) */}
           <div className="card">
             <h4>Inventario</h4>
-            {/* … mantener radios y cantidad si los necesitas … */}
+            {/* radios y cantidad aquí si los necesitas */}
           </div>
 
-          {/* --- error y botón Guardar --- */}
+          {/* Error y botón Guardar */}
           {error && <p style={{ color: "red" }}>{error}</p>}
-
           <button type="submit" className="save" disabled={saving}>
             {saving ? "Guardando…" : "Guardar"}
           </button>
         </section>
 
-        {/* ===== RIGHT ===== */}
+        {/* ===== Panel derecho ===== */}
         <section className="right-panel">
           <div className="card">
             <h4>Estado</h4>
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
+            <select value={status} onChange={(e) => setStatus(e.target.value)}>
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
             </select>
@@ -202,10 +157,10 @@ export default function AddProductPage() {
 
           <div className="card">
             <h4>Organización del producto</h4>
-            <input type="text" placeholder="Tipo" />
-            <input type="text" placeholder="Proveedor" />
-            <input type="text" placeholder="Colecciones" />
-            <input type="text" placeholder="Etiquetas" />
+            <input placeholder="Tipo" />
+            <input placeholder="Proveedor" />
+            <input placeholder="Colecciones" />
+            <input placeholder="Etiquetas" />
           </div>
         </section>
       </div>
