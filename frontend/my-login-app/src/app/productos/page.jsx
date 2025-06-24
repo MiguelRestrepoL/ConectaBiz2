@@ -19,12 +19,12 @@ export default function ProductsPage() {
         </div>
 
         <div className="header-right">
-          {/* ←-- NUEVO enlace de retorno */}
           <Link href="/" className="back-button">
             ← Inicio
           </Link>
-
-          <button className="store-button">🛒 Mi tienda</button>
+          <button type="button" className="store-button">
+            🛒 Mi tienda
+          </button>
         </div>
       </div>
 
