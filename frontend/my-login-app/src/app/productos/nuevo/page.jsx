@@ -1,6 +1,6 @@
 "use client";
-import "../agregar.css";
-import "../agregar-dark.css";
+import "./agregar.css";
+import "./agregar-dark.css";
 
 export default function AddProductPage() {
   const user = "Andrés"; // idem
