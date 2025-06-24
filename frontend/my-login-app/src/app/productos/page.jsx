@@ -1,6 +1,4 @@
 "use client";
-import "./productos.css";
-import "./productos-dark.css";
 import { useRouter } from "next/navigation";
 
 export default function ProductsPage() {
