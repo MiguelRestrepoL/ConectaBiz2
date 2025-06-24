@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function ProductsPage() {
-  const user    = "Andrés";          // ⚠️ Sustituye por tu sesión/ctx real
-  const router  = useRouter();
+  const user = "Andrés"; // ⚠️ Sustituye por tu sesión/ctx real
+  const router = useRouter();
 
   return (
     <>
@@ -21,8 +21,16 @@ export default function ProductsPage() {
         </div>
 
         <div className="header-right">
-          <Link href="/" className="back-button">← Inicio</Link>
-          <button type="button" className="store-button">🛒 Mi tienda</button>
+          <button
+            type="button"
+            className="back-button"
+            onClick={() => router.back()}
+          >
+            ← Inicio
+          </button>
+          <button type="button" className="store-button">
+            🛒 Mi tienda
+          </button>
         </div>
       </header>
 
@@ -32,7 +40,7 @@ export default function ProductsPage() {
         <aside className="sidebar">
           <div className="store-section">
             <img src="/logo-conectabiz-bg.png" alt="Tienda" />
-            <small style={{color:"#ddd"}}>cbiz.myshop.com</small>
+            <small style={{ color: "#ddd" }}>cbiz.myshop.com</small>
           </div>
 
           <input placeholder="Buscar" />
@@ -55,7 +63,9 @@ export default function ProductsPage() {
         <main className="content">
           <section className="product-card">
             <h3>Agrega tus productos</h3>
-            <p>¡Inicia abasteciendo productos para satisfacer a tus clientes!</p>
+            <p>
+              ¡Inicia abasteciendo productos para satisfacer a tus clientes!
+            </p>
 
             <button
               className="add-button"
