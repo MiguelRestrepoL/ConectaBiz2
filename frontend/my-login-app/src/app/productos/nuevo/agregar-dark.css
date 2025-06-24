@@ -1,0 +1,24 @@
+.dark body {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+.dark .card {
+  background: #1e293b;
+}
+.dark .card input,
+.dark .card select,
+.dark .card textarea {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+.dark .upload-caption {
+  color: #cbd5e1;
+}
+.dark .badge {
+  background: #334155;
+  color: #f1f5f9;
+}
+.dark .save {
+  background: #3b82f6;
+}
