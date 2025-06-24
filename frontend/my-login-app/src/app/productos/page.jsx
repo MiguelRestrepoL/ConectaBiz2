@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ProductsPage() {
   const user = "Andrés"; // ⚠️ Sustituye por tu sesión real
@@ -18,6 +19,11 @@ export default function ProductsPage() {
         </div>
 
         <div className="header-right">
+          {/* ←-- NUEVO enlace de retorno */}
+          <Link href="/" className="back-button">
+            ← Inicio
+          </Link>
+
           <button className="store-button">🛒 Mi tienda</button>
         </div>
       </div>

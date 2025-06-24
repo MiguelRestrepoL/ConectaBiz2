@@ -172,3 +172,13 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+.back-button {
+  margin-right: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: #334155;
+  color: #f8fafc;
+  text-decoration: none;
+}
+.back-button:hover { background:#1e293b; }
