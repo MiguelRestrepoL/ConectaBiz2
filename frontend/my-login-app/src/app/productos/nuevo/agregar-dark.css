@@ -1,24 +1,24 @@
-.dark body {
+html.dark .productos-page body {
   background: #0f172a;
   color: #f1f5f9;
 }
-.dark .card {
+html.dark .productos-page .card {
   background: #1e293b;
 }
-.dark .card input,
-.dark .card select,
-.dark .card textarea {
+html.dark .productos-page .card input,
+html.dark .productos-page .card select,
+html.dark .productos-page .card textarea {
   background: #334155;
   color: #f8fafc;
   border-color: #475569;
 }
-.dark .upload-caption {
+html.dark .productos-page .upload-caption {
   color: #cbd5e1;
 }
-.dark .badge {
+html.dark .productos-page .badge {
   background: #334155;
   color: #f1f5f9;
 }
-.dark .save {
+html.dark .productos-page .save {
   background: #3b82f6;
 }

@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-body {
+.productos-page body {
   font-family: "Segoe UI", sans-serif;
   background-color: #bae6fd;
   color: #0f172a;
@@ -12,27 +12,27 @@ body {
 
 /* Reutilizamos header + sidebar del listado,
    aquí sólo van reglas extras del formulario */
-.form-layout {
+.productos-page .form-layout {
   display: flex;
   margin-top: 70px;
 }
 
-.left-panel,
-.right-panel {
+.productos-page .left-panel,
+.productos-page .right-panel {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-.left-panel {
+.productos-page .left-panel {
   flex: 3;
 }
 
-.right-panel {
+.productos-page .right-panel {
   flex: 1;
 }
 
-.card {
+.productos-page .card {
   background-color: #f1f5f9;
   border-radius: 10px;
   padding: 20px 24px;
@@ -41,19 +41,19 @@ body {
   gap: 14px;
 }
 
-.card.grid-3 {
+.productos-page .card.grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
 }
 
-.card h4 {
+.productos-page .card h4 {
   font-size: 15px;
 }
 
-.card input,
-.card select,
-.card textarea {
+.productos-page .card input,
+.productos-page .card select,
+.productos-page .card textarea {
   width: 100%;
   padding: 10px 12px;
   border-radius: 6px;
@@ -61,12 +61,12 @@ body {
   background: #fff;
 }
 
-.upload-caption {
+.productos-page .upload-caption {
   text-align: center;
   color: #334155;
 }
 
-.badge {
+.productos-page .badge {
   background: #e2e8f0;
   border: none;
   padding: 6px 14px;
@@ -74,7 +74,7 @@ body {
   cursor: pointer;
 }
 
-.save {
+.productos-page .save {
   align-self: flex-start;
   background: #2563eb;
   color: #fff;
