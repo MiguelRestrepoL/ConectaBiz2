@@ -1,6 +1,7 @@
-import './productos-dark.css';
-import './productos.css';
+// NO lleva "use client"
+import "./productos.css";
+import "./productos-dark.css";
 
 export default function ProductosLayout({ children }) {
-  return children;               // sin wrapper extra
+  return <div className="productos-page">{children}</div>;
 }

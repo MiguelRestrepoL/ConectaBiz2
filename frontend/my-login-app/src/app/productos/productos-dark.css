@@ -3,52 +3,52 @@
   padding: 0;
   box-sizing: border-box;
 }
-.dark body {
+html.dark body {
   font-family: "Segoe UI", sans-serif;
   background-color: #0f172a;
   color: #e2e8f0;
 }
-.dark .header {
+html.dark .productos-page .header {
   background-color: #1e293b;
 }
-.dark .logo {
+html.dark .productos-page .logo {
   color: #3b82f6;
 }
-.dark .welcome {
+html.dark .productos-page .welcome {
   color: #cbd5e1;
 }
-.dark .search-bar {
+html.dark .productos-page .search-bar {
   background-color: #334155;
   color: #f8fafc;
 }
-.dark .store-button {
+html.dark .productos-page .store-button {
   background-color: #3b82f6;
 }
-.dark .sidebar {
+html.dark .productos-page .sidebar {
   background-color: #0f172a;
 }
-.dark .sidebar input[type="text"] {
+html.dark .productos-page .sidebar input[type="text"] {
   background-color: #1e293b;
 }
-.dark .sidebar button {
+html.dark .productos-page .sidebar button {
   background: #1e293b;
 }
-.dark .sidebar button:hover,
-.dark .sidebar button.is-active {
+html.dark .productos-page .sidebar button:hover,
+html.dark .productos-page .sidebar button.is-active {
   background: #334155;
 }
-.dark .product-card,
-.dark .info-card {
+html.dark .productos-page .product-card,
+html.dark .productos-page .info-card {
   background-color: #1e293b;
 }
-.dark .product-card h3,
-.dark .info-card h4 {
+html.dark .productos-page .product-card h3,
+html.dark .productos-page .info-card h4 {
   color: #e2e8f0;
 }
-.dark .product-card .import-button {
+html.dark .productos-page .product-card .import-button {
   color: #3b82f6;
   border-color: #3b82f6;
 }
-.dark .info-card button.explore {
+html.dark .productos-page .info-card button.explore {
   background: #334155;
 }

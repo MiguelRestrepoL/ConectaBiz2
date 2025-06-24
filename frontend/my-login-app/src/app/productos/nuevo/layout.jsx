@@ -1,6 +1,7 @@
-import './agregar.css'; 
-import './agregar-dark.css';
+// NO lleva "use client"
+import "./agregar.css";
+import "./agregar-dark.css";
 
 export default function NuevoProductoLayout({ children }) {
-  return children;
+  return <div className="productos-page">{children}</div>;
 }
