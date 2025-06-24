@@ -46,3 +46,16 @@ html.dark .productos-page .import-button {
 html.dark .productos-page .explore {
   background: #334155;
 }
+
+html.dark .productos-page .card h4,
+html.dark .productos-page .card label,
+html.dark .productos-page .card small,
+html.dark .productos-page .card input,
+html.dark .productos-page .card textarea,
+html.dark .productos-page .card select {
+  color: #e2e8f0;               /* texto claro */
+}
+
+html.dark .productos-page ::placeholder {
+  color: #94a3b8;
+}
