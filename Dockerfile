@@ -2,12 +2,14 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 
-# Copiamos los archivos de configuración para aprovechar el cache
-COPY package*.json ./
+# Copiamos los archivos de configuración desde la carpeta real del proyecto
+COPY frontend/my-login-app/package*.json ./
+
+# Instalamos dependencias
 RUN npm install
 
-# Copiamos el resto del código
-COPY . .
+# Copiamos el resto del código de la aplicación
+COPY frontend/my-login-app ./
 
 # Construimos la aplicación Next.js
 RUN npm run build
@@ -16,14 +18,14 @@ RUN npm run build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
-# Definimos la variable de entorno a producción
 ENV NODE_ENV=production
+ENV PORT=3000
 
-# Copiamos todo desde la etapa de build
+# Copiamos solo lo necesario de la etapa de build
 COPY --from=builder /app ./
 
-# Exponemos el puerto en el que la aplicación correrá (Railway inyecta el valor en la variable PORT)
-EXPOSE 9090
+# Exponemos el puerto que Railway inyecta
+EXPOSE 3000
 
 # Comando para iniciar la aplicación
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
