@@ -1,5 +1,6 @@
 {
   "build": {
-    "rootDir": "frontend"
+    "builder": "NIXPACKS",
+    "rootDirectory": "frontend/my-login-app"
   }
 }
