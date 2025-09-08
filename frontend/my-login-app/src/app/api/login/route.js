@@ -24,9 +24,9 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Error del servidor' }, { status: 500 });
-  } finally {
+  console.error("❌ Login error:", err.message, err.stack);
+  return NextResponse.json({ error: 'Error del servidor', details: err.message }, { status: 500 });
+} finally {
     client.release();
   }
 }
