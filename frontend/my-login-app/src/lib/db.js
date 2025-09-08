@@ -4,6 +4,7 @@ import { Pool } from "pg";
 
 let pool;
 
+// Usamos global para evitar que se creen múltiples pools en dev
 if (!global.__pgPool) {
   global.__pgPool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -39,15 +40,13 @@ export async function updateUserById(userId, data) {
     vals.push(data.email);
   }
   if (data.password_hash) {
-    // 👈 usamos password_hash, no password
     sets.push(`password_hash = $${idx++}`);
     vals.push(data.password_hash);
   }
 
   if (sets.length === 0) return null; // nada que actualizar
 
-  // colocamos el userId como último parámetro
-  vals.push(userId);
+  vals.push(userId); // 👈 el último valor siempre es el id
   const query = `
     UPDATE users
     SET ${sets.join(", ")}
@@ -58,4 +57,5 @@ export async function updateUserById(userId, data) {
   return rows[0];
 }
 
-export default { pool };
+// 👇 Exportamos SOLAMENTE el pool (no un objeto con pool dentro)
+export default pool;
